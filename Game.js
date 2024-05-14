@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Board from './Board';
+import '../style.css';  // 상대 경로를 사용하여 상위 디렉토리의 style.css 파일을 임포트
 
 function Game() {
     const [squares, setSquares] = useState(Array(9).fill(null));
@@ -7,9 +8,15 @@ function Game() {
 
     const handleClick = (index) => {
         if (squares[index] || calculateWinner(squares)) return;
-        squares[index] = isXNext ? 'X' : 'O';
-        setSquares(squares);
+        const newSquares = squares.slice();
+        newSquares[index] = isXNext ? 'X' : 'O';
+        setSquares(newSquares);
         setIsXNext(!isXNext);
+    };
+
+    const handleRetry = () => {
+        setSquares(Array(9).fill(null));
+        setIsXNext(true);
     };
 
     const winner = calculateWinner(squares);
@@ -27,6 +34,7 @@ function Game() {
             </div>
             <div className="game-info">
                 <div>{status}</div>
+                <button className="retry-button" onClick={handleRetry}>Retry</button>
             </div>
         </div>
     );
