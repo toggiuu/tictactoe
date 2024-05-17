@@ -3,7 +3,7 @@ body, html {
     text-align: center;
     margin: 0;
     padding: 0;
-    height: 100vh; /* 전체 높이 */
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,6 +48,10 @@ body, html {
 
 .square.O {
     color: green;
+}
+
+.square.highlight {
+    background: #ffeb3b;
 }
 
 .game-info {
